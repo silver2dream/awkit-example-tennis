@@ -1,3 +1,3 @@
-module awkit-example-tennis-backend
+module github.com/silver2dream/awkit-example-tennis/backend
 
-go 1.25
+go 1.24
