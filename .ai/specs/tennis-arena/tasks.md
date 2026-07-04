@@ -12,7 +12,7 @@ Sync: independent (directory monorepo)
 
 ## Tasks
 
-- [ ] 1. Backend: fixed-point math, seeded PRNG, and golden-vector loader
+- [ ] 1. Backend: fixed-point math, seeded PRNG, and golden-vector loader <!-- Issue #1 -->
   - Repo: backend
   - Depends on: -
   - [ ] 1.1 Implement Q32.32 fixed-point type (add/sub/mul/div/sqrt) and seeded PRNG
@@ -22,7 +22,7 @@ Sync: independent (directory monorepo)
   - [ ] 1.3 Unit tests: fixed-point round-trip precision, PRNG reproducibility, loader parsing
     - _Requirements: R1.1, R1.4, R1.5_
 
-- [ ] 2. Backend: vector math, court geometry, and in/out classifier
+- [ ] 2. Backend: vector math, court geometry, and in/out classifier <!-- Issue #2 -->
   - Repo: backend
   - Depends on: Step 1
   - [ ] 2.1 Implement court geometry (singles court, service boxes, net line) and `classifyBounce`
@@ -30,7 +30,7 @@ Sync: independent (directory monorepo)
   - [ ] 2.2 Unit tests: boundary and interior points classify as In/Out/ServiceBox/Let correctly
     - _Requirements: R3.2_
 
-- [ ] 3. Backend: ball integrator — gravity + drag (golden vectors)
+- [ ] 3. Backend: ball integrator — gravity + drag (golden vectors) <!-- Issue #3 -->
   - Repo: backend
   - Depends on: Steps 1,2
   - [ ] 3.1 Implement fixed sub-step semi-implicit Euler integration with gravity and quadratic drag
@@ -38,7 +38,7 @@ Sync: independent (directory monorepo)
   - [ ] 3.2 Add gravity+drag golden vectors and tests asserting exact trajectory reproduction
     - _Requirements: R2.1, R2.2, R1.5_
 
-- [ ] 4. Backend: aerodynamics — Magnus / spin (golden vectors)
+- [ ] 4. Backend: aerodynamics — Magnus / spin (golden vectors) <!-- Issue #4 -->
   - Repo: backend
   - Depends on: Step 3
   - [ ] 4.1 Add Magnus force from angular velocity; topspin dips, backspin extends, sidespin deviates
@@ -46,7 +46,7 @@ Sync: independent (directory monorepo)
   - [ ] 4.2 Add spin golden vectors and tests asserting each spin behavior
     - _Requirements: R2.3, R1.5_
 
-- [ ] 5. Backend: bounce model — restitution + spin-coupled friction
+- [ ] 5. Backend: bounce model — restitution + spin-coupled friction <!-- Issue #5 -->
   - Repo: backend
   - Depends on: Steps 3,4
   - [ ] 5.1 Implement bounce: restitution on normal, spin↔tangential-velocity coupling, spin decay
@@ -54,7 +54,7 @@ Sync: independent (directory monorepo)
   - [ ] 5.2 Add bounce golden vectors and tests (topspin kick, backspin check, sidespin deviation)
     - _Requirements: R2.4, R1.5_
 
-- [ ] 6. Backend: net collision
+- [ ] 6. Backend: net collision <!-- Issue #6 -->
   - Repo: backend
   - Depends on: Step 3
   - [ ] 6.1 Implement net plane with center/post height; deflect+dampen below, pass above
@@ -62,7 +62,7 @@ Sync: independent (directory monorepo)
   - [ ] 6.2 Unit tests at center and posts: clearing vs clipping the net
     - _Requirements: R2.5_
 
-- [ ] 7. Backend: stroke model — swing types, timing, imparted spin
+- [ ] 7. Backend: stroke model — swing types, timing, imparted spin <!-- Issue #7 -->
   - Repo: backend
   - Depends on: Step 4
   - [ ] 7.1 Implement stroke → outgoing velocity+spin from (swing type, aim, power, timing)

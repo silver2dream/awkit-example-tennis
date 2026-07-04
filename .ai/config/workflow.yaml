@@ -1,0 +1,111 @@
+# Tennis Arena — recommended AWK config (copy to .ai/config/workflow.yaml)
+# Tuned to exercise v0.14.0: structured review, evidence gate, severity gate,
+# learning loop, knowledge-graph grounding, and (optionally) multi-model consensus.
+version: "1.2"
+
+project:
+  name: "tennis-arena"
+  description: "Real-time networked tennis with realistic physics (commercial-grade)"
+  type: "monorepo"
+
+# Directory-type monorepo: backend (Go) + frontend (React/TS) share one .git.
+# verify.* is what the review EVIDENCE GATE re-runs before approving a PR.
+repos:
+  - name: backend
+    path: backend/
+    type: directory
+    language: go
+    verify:
+      build: "go build ./..."
+      test: "go test ./..."
+
+  - name: frontend
+    path: frontend/
+    type: directory
+    language: node
+    package_manager: npm
+    verify:
+      setup: "npm ci 2>/dev/null || npm install"
+      build: "npm run build"
+      test: "npm test"
+
+git:
+  integration_branch: "main"   # PRs merge here; match your repo's default branch
+  release_branch: "main"
+  commit_format: "[type] subject"
+
+specs:
+  base_path: ".ai/specs"
+  files:
+    requirements: "requirements.md"
+    design: "design.md"          # injected into Worker prompts as design context
+    tasks: "tasks.md"
+  auto_generate_tasks: false
+  active: ["tennis-arena"]        # <-- turns the spec on
+
+tasks:
+  source_priority: [specs]
+
+audit:
+  checks: [dirty-worktree, missing-tests, missing-ci]
+
+github:
+  repo: ""   # blank = current git remote
+
+# ---- Review: the v0.14.0 quality gates -------------------------------------
+review:
+  score_threshold: 7
+  merge_strategy: squash
+  # Severity/verdict consistency gate (default on): a below-threshold score must
+  # list a Critical/Important finding; a passing score must not carry a Critical.
+  severity_consistency: true
+  # Multi-model consensus — powerful but doubles review cost. Turn on to test it:
+  # multi_model: true
+  # secondary_reviewers:
+  #   - backend: claude
+  #     model: opus
+  #     focus_area: architecture
+  # JiT tests: generate independent tests from the PR diff at review time.
+  # Great fit for the deterministic sim; start in warn mode.
+  jittest:
+    enabled: true
+    max_tests: 5
+    timeout_seconds: 180
+    failure_policy: warn      # switch to "block" once the sim is stable
+
+# ---- Learning loop: record -> distill -> inject -> verify -------------------
+lessons:
+  enabled: true
+  max_active: 30
+  inject_top_k: 3
+  inject_max_chars: 800
+  distiller:
+    backend: claude
+    model: sonnet
+    timeout_seconds: 60
+
+feedback:
+  enabled: true
+  max_history_in_prompt: 10
+
+# ---- Worker ----------------------------------------------------------------
+worker:
+  backend: codex            # or: claude-code
+  knowledge_graph: auto     # inject .understand-anything/knowledge-graph.json when present
+
+timeouts:
+  git_seconds: 120
+  gh_seconds: 60
+  codex_minutes: 30
+
+escalation:
+  max_consecutive_failures: 3
+  retry_count: 2
+  # A big spec produces big PRs; raise caps so foundational tasks aren't escalated.
+  max_single_pr_files: 60
+  max_single_pr_lines: 1200
+  triggers:
+    - pattern: "credential|secret|password|token"
+      action: "require_human_approval"
+
+hooks: {}

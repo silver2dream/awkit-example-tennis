@@ -1,0 +1,22 @@
+
+# >>> AI Workflow Kit >>>
+# Runtime state (do not commit)
+.ai/state/
+.ai/results/
+.ai/runs/
+.ai/exe-logs/
+.ai/logs/
+.ai/temp/
+.worktrees/
+# Claude Code local settings (do not commit)
+.claude/settings.local.json
+# Common cache files (prevent audit P1 findings)
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+node_modules/
+.npm/
+.yarn/
+*.log
+# <<< AI Workflow Kit <<<
