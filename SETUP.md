@@ -22,9 +22,18 @@ git init
 git add .
 git commit -m "chore: seed tennis-arena spec"
 
+# Enable the repo's pre-commit guard (rejects UTF-16/NUL-corrupted text files;
+# core.hooksPath is per-clone, so set it after cloning too):
+git config core.hooksPath .githooks
+
 # Create the GitHub repo AWK will drive (issues/PRs live here)
 gh repo create tennis-arena --private --source=. --push
 ```
+
+> **Windows note:** don't append to text files with PowerShell `>>` or bare
+> `Out-File` — they write **UTF-16** and corrupt the file. Use
+> `Add-Content -Encoding utf8` or edit in your editor. The committed
+> `.gitattributes` (LF) + `.githooks/pre-commit` (NUL-byte guard) catch this.
 
 ## 2. Install AWK with the react-go monorepo scaffold
 
