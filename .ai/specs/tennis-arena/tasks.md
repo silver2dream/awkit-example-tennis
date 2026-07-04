@@ -30,7 +30,7 @@ Sync: independent (directory monorepo)
   - [ ] 2.2 Unit tests: boundary and interior points classify as In/Out/ServiceBox/Let correctly
     - _Requirements: R3.2_
 
-- [ ] 3. Backend: ball integrator — gravity + drag (golden vectors)
+- [ ] 3. Backend: ball integrator — gravity + drag (golden vectors) <!-- Issue #3 -->
   - Repo: backend
   - Depends on: Steps 1,2
   - [ ] 3.1 Implement fixed sub-step semi-implicit Euler integration with gravity and quadratic drag
