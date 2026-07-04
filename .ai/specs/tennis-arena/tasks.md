@@ -54,7 +54,7 @@ Sync: independent (directory monorepo)
   - [ ] 5.2 Add bounce golden vectors and tests (topspin kick, backspin check, sidespin deviation)
     - _Requirements: R2.4, R1.5_
 
-- [ ] 6. Backend: net collision
+- [ ] 6. Backend: net collision <!-- Issue #6 -->
   - Repo: backend
   - Depends on: Step 3
   - [ ] 6.1 Implement net plane with center/post height; deflect+dampen below, pass above
