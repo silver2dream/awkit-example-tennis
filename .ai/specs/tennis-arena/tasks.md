@@ -12,7 +12,7 @@ Sync: independent (directory monorepo)
 
 ## Tasks
 
-- [ ] 1. Backend: fixed-point math, seeded PRNG, and golden-vector loader
+- [ ] 1. Backend: fixed-point math, seeded PRNG, and golden-vector loader <!-- Issue #1 -->
   - Repo: backend
   - Depends on: -
   - [ ] 1.1 Implement Q32.32 fixed-point type (add/sub/mul/div/sqrt) and seeded PRNG
