@@ -46,7 +46,7 @@ Sync: independent (directory monorepo)
   - [ ] 4.2 Add spin golden vectors and tests asserting each spin behavior
     - _Requirements: R2.3, R1.5_
 
-- [ ] 5. Backend: bounce model — restitution + spin-coupled friction
+- [ ] 5. Backend: bounce model — restitution + spin-coupled friction <!-- Issue #5 -->
   - Repo: backend
   - Depends on: Steps 3,4
   - [ ] 5.1 Implement bounce: restitution on normal, spin↔tangential-velocity coupling, spin decay
