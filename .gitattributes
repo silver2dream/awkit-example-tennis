@@ -1,0 +1,36 @@
+# Normalize all text to LF in the repo; check out as-is.
+* text=auto eol=lf
+
+# Text formats: always LF (guards against Windows CRLF/UTF-16 surprises).
+*.md    text eol=lf
+*.markdown text eol=lf
+*.txt   text eol=lf
+*.yaml  text eol=lf
+*.yml   text eol=lf
+*.json  text eol=lf
+*.toml  text eol=lf
+*.go    text eol=lf
+*.mod   text eol=lf
+*.sum   text eol=lf
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.js    text eol=lf
+*.mjs   text eol=lf
+*.css   text eol=lf
+*.html  text eol=lf
+*.sql   text eol=lf
+*.sh    text eol=lf
+Dockerfile text eol=lf
+*.gitattributes text eol=lf
+
+# Binaries: never apply text/eol filters.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.pdf   binary
+*.gz    binary
+*.zip   binary
+*.wasm  binary

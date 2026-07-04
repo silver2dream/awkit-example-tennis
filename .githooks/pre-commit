@@ -1,0 +1,25 @@
+#!/bin/sh
+# Guard against UTF-16 / binary corruption in text files (the PowerShell ">>"
+# gotcha that produced null bytes and broke README rendering).
+#
+# Rejects any staged non-binary file whose content contains NUL bytes.
+# Install: git config core.hooksPath .githooks   (see SETUP.md)
+
+fail=0
+
+# ACM = Added, Copied, Modified staged files.
+git diff --cached --name-only --diff-filter=ACM -z | while IFS= read -r -d '' f; do
+	# Skip files git treats as binary (images, archives, ...).
+	if git check-attr binary -- "$f" | grep -q ': set$'; then
+		continue
+	fi
+	orig=$(git show ":$f" | wc -c)
+	stripped=$(git show ":$f" | tr -d '\000' | wc -c)
+	if [ "$orig" -ne "$stripped" ]; then
+		printf 'ERROR: %s contains NUL bytes (likely UTF-16/CRLF from a PowerShell ">>" or Out-File).\n' "$f" >&2
+		printf '       Re-save it as UTF-8. In PowerShell use: Add-Content -Encoding utf8 (not ">>").\n' >&2
+		echo corrupt
+	fi
+done | grep -q corrupt && fail=1
+
+exit $fail
