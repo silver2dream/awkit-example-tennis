@@ -62,7 +62,7 @@ Sync: independent (directory monorepo)
   - [ ] 6.2 Unit tests at center and posts: clearing vs clipping the net
     - _Requirements: R2.5_
 
-- [ ] 7. Backend: stroke model — swing types, timing, imparted spin
+- [ ] 7. Backend: stroke model — swing types, timing, imparted spin <!-- Issue #7 -->
   - Repo: backend
   - Depends on: Step 4
   - [ ] 7.1 Implement stroke → outgoing velocity+spin from (swing type, aim, power, timing)
