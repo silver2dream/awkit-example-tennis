@@ -22,7 +22,7 @@ Sync: independent (directory monorepo)
   - [ ] 1.3 Unit tests: fixed-point round-trip precision, PRNG reproducibility, loader parsing
     - _Requirements: R1.1, R1.4, R1.5_
 
-- [ ] 2. Backend: vector math, court geometry, and in/out classifier
+- [ ] 2. Backend: vector math, court geometry, and in/out classifier <!-- Issue #2 -->
   - Repo: backend
   - Depends on: Step 1
   - [ ] 2.1 Implement court geometry (singles court, service boxes, net line) and `classifyBounce`
