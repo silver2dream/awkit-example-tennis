@@ -38,7 +38,7 @@ Sync: independent (directory monorepo)
   - [ ] 3.2 Add gravity+drag golden vectors and tests asserting exact trajectory reproduction
     - _Requirements: R2.1, R2.2, R1.5_
 
-- [ ] 4. Backend: aerodynamics — Magnus / spin (golden vectors)
+- [ ] 4. Backend: aerodynamics — Magnus / spin (golden vectors) <!-- Issue #4 -->
   - Repo: backend
   - Depends on: Step 3
   - [ ] 4.1 Add Magnus force from angular velocity; topspin dips, backspin extends, sidespin deviates
