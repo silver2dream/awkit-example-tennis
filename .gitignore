@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+.npm/
+.yarn/
+
+# Build output
+dist/
+build/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Logs
+*.log
